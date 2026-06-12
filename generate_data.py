@@ -14,7 +14,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 cursor.execute("USE ecommerce_analytics")
 
-# ── Clear old data ─────────────────────────────────────
+# Cleaning old data 
 print("Clearing old data...")
 cursor.execute("DELETE FROM order_items")
 cursor.execute("DELETE FROM orders")
@@ -40,7 +40,7 @@ for _ in range(500):
     ))
 conn.commit()
 
-# ── 2. Generate Products ───────────────────────────────
+# Generating Products 
 print("Inserting products...")
 categories = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports', 'Toys']
 for _ in range(100):
@@ -54,7 +54,7 @@ for _ in range(100):
     ))
 conn.commit()
 
-# ── 3. Generate Orders ─────────────────────────────────
+# Generating Orders 
 print("Inserting orders...")
 
 # Fetch real customer IDs from the database
@@ -73,7 +73,7 @@ for _ in range(2000):
     ))
 conn.commit()
 
-# ── 4. Generate Order Items ────────────────────────────
+# Generating Order Items 
 print("Inserting order items...")
 
 # Fetch real order and product IDs from the database
@@ -97,4 +97,4 @@ conn.commit()
 
 cursor.close()
 conn.close()
-print("✅ Done! Database populated successfully.")
+print("Done! Database populated successfully!")
