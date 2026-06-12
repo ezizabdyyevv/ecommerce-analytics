@@ -2,7 +2,7 @@ import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ── Connect to MySQL ───────────────────────────────────
+# Connecting to MySQL 
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -10,7 +10,7 @@ conn = mysql.connector.connect(
     database="ecommerce_analytics"
 )
 
-# ── Chart 1: Revenue by Category ──────────────────────
+# Revenue by Category 
 query1 = """
     SELECT p.category, ROUND(SUM(oi.quantity * p.price), 2) AS revenue
     FROM order_items oi
@@ -30,9 +30,9 @@ plt.ylabel('Revenue ($)')
 plt.tight_layout()
 plt.savefig('revenue_by_category.png')
 plt.show()
-print("✅ Chart 1 saved!")
+print(" Chart 1 saved!")
 
-# ── Chart 2: Monthly Revenue Trend ────────────────────
+# Monthly Revenue Trend 
 query2 = """
     SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS month,
            ROUND(SUM(oi.quantity * p.price), 2) AS revenue
@@ -54,9 +54,9 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('monthly_revenue.png')
 plt.show()
-print("✅ Chart 2 saved!")
+print(" Chart 2 saved!")
 
-# ── Chart 3: Top 10 Customers by Spend ────────────────
+# Top 10 Customers by Spend 
 query3 = """
     SELECT c.name,
            ROUND(SUM(oi.quantity * p.price), 2) AS total_spent
@@ -79,7 +79,7 @@ plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.savefig('top_customers.png')
 plt.show()
-print("✅ Chart 3 saved!")
+print("Chart 3 saved!")
 
 conn.close()
-print("\n✅ All charts saved successfully!")
+print("\n All charts saved successfully!")
